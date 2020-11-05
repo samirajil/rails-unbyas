@@ -1,3 +1,5 @@
+gem 'byebug'
+
 class InputsController < ApplicationController
   skip_before_action :authenticate_user!
   def new
@@ -5,12 +7,22 @@ class InputsController < ApplicationController
   end
 
   def create
-    @input = Input.find(params[:input_id])
+    @input = Input.new(text: input_params[:text])
     if @input.save
-      redirect_to root_path
+      redirect_to input_path(@input)
     else
       render :new
     end
+  end
+
+  def show
+    @input = Input.find(params[:id])
+  end 
+
+  private 
+
+  def input_params
+    params.require(:input).permit(:text)
   end
 
 end
