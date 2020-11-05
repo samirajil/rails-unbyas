@@ -1,0 +1,23 @@
+<div class="container" data-controller="bias">
+  <h1>UNBYAS your documents!</h1>
+
+  <div class="info-card">
+    <p class="text my-4">
+        <span data-action="mouseover->bias#analyse mouseout->bias#stopanalyse"><%= @input.text %></span>
+    </p>
+  </div>
+
+  <div data-target="bias.bias" class="info-card d-none">
+    <p>Here are some alternatives for the word:</p>
+    <p class="text my-4">
+        <div>
+          <ul>
+            <%= @input.alternatives.each do | alternative | %>
+              <li><%= alternative.alternative_word %></li>
+            <% end %>
+          </ul>
+        </div>
+    </p>
+  </div>
+
+</div>
