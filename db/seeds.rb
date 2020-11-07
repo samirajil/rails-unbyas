@@ -7,27 +7,27 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 gem "byebug"
+require 'csv'
 
-InputMistake.delete_all
 Alternative.delete_all
 Mistake.delete_all
 
-list = [
-    {
-        :mistake => "mankind",
-        :alternatives => ["humankind", "humanity"]
-    },
-    {
-        :mistake => "chairman",
-        :alternatives => ["chair", "chairperson"]
-    },
-]
-
-list.each do |item|
-  @mistake = Mistake.create(mistaken_word: item[:mistake])
+CSV.foreach(Rails.root.join('lib/biases.csv'), headers: true) do |row|
+  @mistake = Mistake.create(mistaken_word: row["mistake"])
   @mistake.save
-  item[:alternatives].each do |alternative|
-    @alternative = Alternative.create(mistake: @mistake, alternative_word: alternative)
-    @alternative.save
-  end
+
+  @alternative1 = Alternative.create(mistake: @mistake, alternative_word: row["alternative1"])
+  @alternative1.save
+  
+  @alternative2 = Alternative.create(mistake: @mistake, alternative_word: row["alternative2"])
+  @alternative2.save
+
+  @alternative3 = Alternative.create(mistake: @mistake, alternative_word: row["alternative3"])
+  @alternative3.save
+
+  @alternative4 = Alternative.create(mistake: @mistake, alternative_word: row["alternative4"])
+  @alternative4.save
+
+  @alternative5 = Alternative.create(mistake: @mistake, alternative_word: row["alternative5"])
+  @alternative5.save
 end
