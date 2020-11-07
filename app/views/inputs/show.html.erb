@@ -2,22 +2,36 @@
   <h1>UNBYAS your documents!</h1>
 
   <div class="info-card">
-    <p class="text my-4">
-        <span data-action="mouseover->bias#analyse mouseout->bias#stopanalyse"><%= @input.text %></span>
-    </p>
+        <% @input.text.split().each do |input| %>
+            <% mistaken_words = [] %>
+            <% @mistakes.each do |mistake|%>
+              <% mistaken_words << mistake.mistaken_word %>
+            <% end %>
+            <% if mistaken_words.include?(input) %>
+               <p data-action="mouseover->bias#analyse mouseout->bias#stopanalyse" style="background: #A3ADFF; height: 20px; margin: 0px;" class = "text my-4"><%= input + "_" %></p>
+            <% else %>
+              <p class="text my-4" ><%= input + "_" %></p>
+            <% end %>
+        <% end %>
   </div>
 
   <div data-target="bias.bias" class="info-card d-none">
-    <p>Here are some alternatives for the word:</p>
-    <p class="text my-4">
-        <div>
-          <ul>
-            <%= @input.alternatives.each do | alternative | %>
-              <li><%= alternative.alternative_word %></li>
+      <p>Here are some alternatives for the word:</p>
+      <p class="text my-4">
+          <ul class= "text my-4">
+            <% @input.text.split().each do |input| %>
+              <% mistakes = Mistake.where(mistaken_word: "#{input}").to_a %>
+              <% mistakes.each do |mistake| %>
+              <li>
+                <% id = mistake.id.to_i  %>
+                <% alternatives = @alternatives.where(mistake_id: "#{id}").to_a %>
+                <% alternatives.each do |alternative| %>
+                  <%= alternative.alternative_word %>
+                <% end %>
+              </li>
+              <% end %>
             <% end %>
           </ul>
-        </div>
-    </p>
+      </p>
   </div>
-
 </div>
