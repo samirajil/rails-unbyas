@@ -17,7 +17,13 @@ class InputsController < ApplicationController
 
   def show
     @input = Input.find(params[:id])
+    @words = @input.text.split()
     @mistakes = Mistake.all
+    @mistaken_words = []
+    @mistakes.each do |mistake|
+      @mistaken_words << mistake.mistaken_word
+    end
+
     @alternatives = Alternative.all
   end
 
