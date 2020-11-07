@@ -17,7 +17,7 @@ CSV.foreach(Rails.root.join('lib/biases.csv'), headers: true) do |row|
   @mistake.save
 
   @alternative1 = Alternative.create(mistake: @mistake, alternative_word: row["alternative1"])
-   @alternative1.save
+  @alternative1.save
   
   @alternative2 = Alternative.create(mistake: @mistake, alternative_word: row["alternative2"])
   @alternative2.save
