@@ -17,12 +17,13 @@ class InputsController < ApplicationController
 
   def show
     @input = Input.find(params[:id])
-  end 
+    @mistakes = Mistake.all
+    @alternatives = Alternative.all
+  end
 
-  private 
+  private
 
   def input_params
     params.require(:input).permit(:text)
   end
-
 end

@@ -1,0 +1,3 @@
+class InputMistakesController < ApplicationController
+
+end
