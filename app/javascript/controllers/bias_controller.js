@@ -4,11 +4,6 @@ export default class extends Controller {
   static targets = [ 'bias' ];
 
   analyse() {
-    this.biasTarget.classList.remove("d-none");
-    
-  }
-
-  stopanalyse() {
-    this.biasTarget.classList.add("d-none");
+    this.biasTarget.classList.toggle("d-none");
   }
 }
