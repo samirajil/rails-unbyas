@@ -1,0 +1,22 @@
+.photo {
+  object-fit: cover;
+  width: 250px;
+  height: 250px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+}
+
+.photo-div {
+  width: 300px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.photo-container {
+  margin: 50px 30px;
+  margin-bottom: 300px;
+  display: flex;
+  justify-content: space-around;
+}
+
+
