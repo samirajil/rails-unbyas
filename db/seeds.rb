@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-gem "byebug"
 require 'csv'
 
 Alternative.delete_all
@@ -18,7 +17,7 @@ CSV.foreach(Rails.root.join('lib/biases.csv'), headers: true) do |row|
 
   @alternative1 = Alternative.create(mistake: @mistake, alternative_word: row["alternative1"])
   @alternative1.save
-  
+
   @alternative2 = Alternative.create(mistake: @mistake, alternative_word: row["alternative2"])
   @alternative2.save
 

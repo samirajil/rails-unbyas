@@ -1,5 +1,3 @@
-gem 'byebug'
-
 class InputsController < ApplicationController
   skip_before_action :authenticate_user!
   def new
